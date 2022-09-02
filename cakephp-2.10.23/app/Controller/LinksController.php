@@ -1,11 +1,15 @@
 <?php
 class LinksController extends AppController{
 
+      public function isAuthorized($user = null){
+            parent::isAuthorized($user);
+            return $user['role'] == 'admin';
+      }
+
       function beforeFilter()
       {
             parent::beforeFilter(); 
-            // $this->Auth->allow();
-            // $this->Auth->deny('add');
+            $this->Security->requirePost('login');
       }
 
       public function add(){

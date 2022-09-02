@@ -6,7 +6,6 @@
     <title><?= $tittle_for_layout; ?></title>
     <?= $this->Html->css("https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"); ?>
     <?= $this->fetch('css'); ?>
-    <!-- <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"> -->
   </head>
   <body>
 
@@ -18,15 +17,11 @@
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
           <li><a href="#">Three</a></li>
-          <li> 
-            <?=
-                  $this->Html->link(
-                  'Se deconnecter',array(
-                  'controller' => 'users', 
-                  'action' => 'logout'
-                  )); 
-            ?> 
-          </li>
+          <?php if($this->Session->read('Auth.User.id')): ?>
+            <li> <?= $this->Html->link('Se deconnecter',array('controller' => 'users', 'action' => 'logout')); ?> </li>
+            <?php else: ?>
+              <li> <?= $this->Html->link('Se connecter',array('controller' => 'users', 'action' => 'login')); ?> </li>
+          <?php endif ?>
         </ul>
       </div>
     </div>
