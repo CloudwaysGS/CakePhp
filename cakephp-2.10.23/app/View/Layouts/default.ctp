@@ -18,6 +18,15 @@
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
           <li><a href="#">Three</a></li>
+          <li> 
+            <?=
+                  $this->Html->link(
+                  'Se deconnecter',array(
+                  'controller' => 'users', 
+                  'action' => 'logout'
+                  )); 
+            ?> 
+          </li>
         </ul>
       </div>
     </div>

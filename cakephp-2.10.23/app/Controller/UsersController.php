@@ -2,20 +2,22 @@
 class UsersController extends AppController {
 
       public function login() {
-            // debug($this->Session->read('Auth,User,id'));
-            debug($this->Auth->user('role'));
+
+            debug($this->Session->read());
+            // debug($this->Auth->user('role'));
             // debug(AuthComponent::user('role'));
-            if($this->request->is('post')){
-                  if(!empty($this->request->data)){
-                        if($this->Auth->login()){
-                              
+            // debug(AuthComponent::user('id'));
+            // debug($this->Session->read());
+            if(!empty($this->request->data)){
+                        if($this->Auth->login()){  
+                              // die('logged'); 
                         }         
-                  }
-            }    
+                  }   
       }
       
       public function logout() {
-
+            $this->Auth->logout();
+            return $this->redirect('/');
       }
 }
 // $this->User->save(array(
