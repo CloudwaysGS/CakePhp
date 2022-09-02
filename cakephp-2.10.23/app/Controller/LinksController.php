@@ -4,8 +4,8 @@ class LinksController extends AppController{
       function beforeFilter()
       {
             parent::beforeFilter(); 
-            $this->Auth->allow();
-            $this->Auth->deny('add');
+            // $this->Auth->allow();
+            // $this->Auth->deny('add');
       }
 
       public function add(){
