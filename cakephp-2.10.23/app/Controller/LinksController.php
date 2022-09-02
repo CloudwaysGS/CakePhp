@@ -1,11 +1,23 @@
 <?php
 class LinksController extends AppController{
 
+      function beforeFilter()
+      {
+            parent::beforeFilter(); 
+            $this->Auth->allow();
+            $this->Auth->deny('add');
+      }
+
       public function add(){
             if($this->request->is('post')){
                   $link = $this->Link->findByUrl($this->request->data['Link']['url']);
                   if(empty($link)){
                         $this->Link->create($this->request->data, true);
+                        // $validator = $this->Link->validator();
+                        // $validator->getField('url')->getRule('isURL', array());
+                        // $validator->remove('url', 'isEmpty');
+                        // unset($validator['url']);
+                        
                         if($this->Link->save(null, true, array('url'))){
                               $id=$this->Link->id;
                               $this->set(compact('id'));

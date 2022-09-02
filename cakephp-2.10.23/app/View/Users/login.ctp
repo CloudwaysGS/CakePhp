@@ -1,0 +1,9 @@
+<h1>Login</h1>
+<?= $this->Form->create('users'); ?>
+      <?= $this->Form->input(
+            'username', array('label' => 'Identifiant')
+      ); ?>
+      <?= $this->Form->input(
+            'password', array('label' => 'Mot de passe')
+      ); ?>
+<?= $this->Form->end('Se connecter'); ?>
