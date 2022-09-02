@@ -6,22 +6,34 @@ class LinksController extends AppController{
                   $link = $this->Link->findByUrl($this->request->data['Link']['url']);
                   if(empty($link)){
                         $this->Link->create($this->request->data, true);
-                        $this->Link->save(null, true, array('url'));
-                        $id=$this->Link->id;
+                        if($this->Link->save(null, true, array('url'))){
+                              $id=$this->Link->id;
+                              $this->set(compact('id'));
+                              $this->render('add-success');
+                        }
                   }else{
                         $id = $link['Link']['id'];
+                        $this->set(compact('id'));
+                        $this->render('add-success');
                         // die("j ai trouvé le lien");
                   }
-                  $this->set(compact('id'));
-                  $this->render('add-success');
+                  // $this->set('id', $id);
             }
       }
 
       public function view($id){
+            debug($this->request);
+            die();
             $link = $this->Link->findById($id);
             if(empty($link)){
                   throw new NotFoundException();
             }
             return $this->redirect($link['Link']['url'], 301);
       }
+
+      public function admin_index(){
+            $links = $this->Link->find('all');
+            $this->set(compact('links'));
+      }
+
 }
